@@ -1,3 +1,5 @@
+import { ADD_POST } from "./types";
+
 const initialStore = {
   stories: {
     create: true,
@@ -5,7 +7,8 @@ const initialStore = {
   }
 };
 
-function rightsReducer (store = initialStore, action) {
+
+function Reducer (store = initialStore, action) {
   switch(action.type){
     case "CHANGE_STORIES_CREATE": {
       return {
@@ -21,4 +24,15 @@ function rightsReducer (store = initialStore, action) {
   }
 }
 
-export default rightsReducer;
+export default Reducer;
+
+
+
+
+export const addTextReducer = (state= initialStore, action) => {
+  switch (action.type) {
+    case ADD_POST:
+      return action.payload
+  }
+  return state;
+}

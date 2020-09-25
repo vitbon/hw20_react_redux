@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import CreatePost from './component/createPost/CreatePost';
 import Post from './component/post/post';
 import './component/post/post.css';
 import {pData} from "./component/post/post_data";
@@ -9,9 +9,12 @@ import {Provider} from 'react-redux';
 function App() {
   return (
     // <Provider store={store}>
-      <div className="App">
+      <>
+        <div>
+          <CreatePost />
+        </div>
         { pData.map(post => <Post {...post} /> )}
-      </div>
+      </>
     // </Provider>
   );
 }
