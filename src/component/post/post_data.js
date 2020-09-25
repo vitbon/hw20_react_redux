@@ -12,6 +12,7 @@ export const pData = [
     like: { count: 529, isPressed: false },
   },
   {
+    id: 2,
     name: "Emperor Palpatine",
     avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/sheevPalpatine-ava.jpg",
     nickname: "@sheva-imperator",
@@ -23,6 +24,7 @@ export const pData = [
     like: { count: 784, isPressed: false },
   },
   {
+    id: 3,
     name: "Princess/General Leia Organa",
     avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/leiaOrgana-ava.jpg",
     nickname: "@princess-Leia",

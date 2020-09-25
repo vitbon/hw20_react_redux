@@ -4,18 +4,20 @@ import Post from './component/post/post';
 import './component/post/post.css';
 import {pData} from "./component/post/post_data";
 import {Provider} from 'react-redux';
-// import store from './store/store';
+import store from './redux/store';
 
 function App() {
   return (
-    // <Provider store={store}>
+    <Provider store={store}>
       <>
         <div>
           <CreatePost />
         </div>
-        { pData.map(post => <Post {...post} /> )}
+        <div>
+          { pData.map(post => <Post {...post} /> )}
+        </div>
       </>
-    // </Provider>
+    </Provider>
   );
 }
 

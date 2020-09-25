@@ -123,13 +123,12 @@
 }
 
 .create_card_header_avatar img {
-  top: 25px;
-  left: 67px;
-  color: black;
-  content: "v";
-  font-size: 15px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: black;
+  background-size: cover;
   position: absolute;
-  cursor: pointer;
 }
 
 .create_card_header_textBox {
