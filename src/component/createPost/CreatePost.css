@@ -45,6 +45,7 @@
   width: 210px;
   font-size: 16px;
   background-color: #e2e2e2;
+  margin-right: 10px;
 }
 
 .create_hero_text {
@@ -78,6 +79,14 @@
   border-radius: 5px;
   position: relative;
 }
+
+/*.create_card_center > img {*/
+/*  height: 112px;*/
+/*  width: 635px;*/
+/*  object-fit: cover;*/
+/*  border-radius: 15px;*/
+/*  position: relative;*/
+/*}*/
 
 .create_card_footer {
   font-size: 16px;

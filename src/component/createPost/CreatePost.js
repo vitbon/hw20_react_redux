@@ -1,60 +1,81 @@
 import React, { Component } from "react";
 import { connect, useDispatch } from 'react-redux';
 import './CreatePost.css';
-import reducer from "../../redux/reducer";
-import { changeName, changeNickName } from "../../redux/actions";
-import { CHANGE_NAME, CHANGE_NICKNAME, CHANGE_CONTENT, CHANGE_IMAGE,
-  CLICK_MESSAGE, CLICK_RETWEET, CLICK_LIKE, CHANGE_AVATAR, ADD_POST } from "../../redux/types";
+import reducer from '../../redux/reducer.js';
+import store from '../../redux/store';
+import { changeName, changeNickName, changeDate, changeContent, changeImage, changeAvatar,
+  changeMessage } from "../../redux/actions";
+
+let avatarID = 3;
 
 class CreatePost extends Component {
-/*
-  state = {
-    avatarID: 0,
-    avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/dartWeider-ava.jpg",
-    date: '',
-    currentDay: '',
-    countMessage: 5,
-    countReTweet: 5,
-    countLike: 5,
-  };
-*/
+  constructor(props) {
+    super(props);
+    state = {
 
-  componentDidMount () {
+    };
+  }
+  componentWillMount() {
     const getRnd = (min, max) => { return (Math.round(Math.random() * (max - min) + min))};
     const d = new Date();
     const day = d.getDate();
     const month = d.getMonth();
     const strMonth = ['jan.', 'feb.', 'mar.', 'apr.', 'may', 'jun.', 'jul.', 'aug.', 'sep.', 'oct.', 'nov.', 'dec.'];
-    this.setState({currentDay: day + ' ' + strMonth[month] });
-    this.setState({countMessage: getRnd(1, 1000)});
-    this.setState({countReTweet: getRnd(1, 1000)});
-    this.setState({countLike: getRnd(100, 1000)});
+    const st = store.getState();
+    const stNew = {
+        id: st.length,
+        name: "",
+        avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/dartWeider-ava.jpg",
+        avatarID: 3,
+        nickname: "",
+        date: day + ' ' + strMonth[month],
+        content: "",
+        image: "",
+        message: { count: getRnd(1, 1000), isPressed: false },
+        reTweet: { count: getRnd(1, 1000), isPressed: false },
+        like: { count: getRnd(1, 1000), isPressed: false },
+    };
+    st.push(stNew);
   }
 
-  async handlerAvatar(e) {
-    const avasURL = [
-      "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/skywalker-ava.jpg",
-      "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/sheevPalpatine-ava.jpg",
-      "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/leiaOrgana-ava.jpg",
-      "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/dartWeider-ava.jpg",
-    ];
-    if (this.state.avatarID >= 3) {
-      await this.setState({avatarID: 0})
-    } else {
-      await this.setState({avatarID: ++this.state.avatarID});
-    }
-    await this.setState({avatar: avasURL[this.state.avatarID]});
-  };
+  storeDate = () => {
+    const s = store.getState();
+    return s[s.length-1].date;
+  }
+
+  storeAvatar = () => {
+    const s = store.getState();
+    return s[s.length-1].avatar;
+  }
+
+  storeImg = () => {
+    const s = store.getState();
+    return s[s.length-1].image;
+  }
+
+  storeMessage = () => {
+    const s = store.getState();
+    return s[s.length-1].message.count;
+  }
+
+  storeReTweet = () => {
+    const s = store.getState();
+    return s[s.length-1].reTweet.count;
+  }
+
+  storeLike = () => {
+    const s = store.getState();
+    return s[s.length-1].like.count;
+  }
 
   render() {
-    //const dispatch = useDispatch();
     const path = 'https://github.com/vitbon/hw20_react_redux/raw/master/public/img/';
     return (
       <div className={"background"}>
         <div className="create_card">
           <div className="create_card_header">
-            <span className="create_card_header_avatar" onClick={this.handlerAvatar}>
-              <img src='{this.state.avatar}'/>
+            <span className="create_card_header_avatar" onClick={(e) => this.props.changeAvatar(e.target.src)} >
+              <img src={this.storeAvatar()} />
             </span>
             <span className="create_card_header_textBox">
               <div className="create_card_header_textBox_name">
@@ -63,19 +84,28 @@ class CreatePost extends Component {
                        onChange={(e) => this.props.changeName(e.target.value)}
                        defaultValue={this.props.name}
                 >
-
                 </input>
                 <img src={`${path}` + "star-active.png"} className="star-active" alt="Active Button"/>
                 <span>&nbsp;@ </span>
-                <input className="create_hero_nick" placeholder="Nickname..."
+                <input className="create_hero_nick"
+                       placeholder="Nickname..."
                        onChange={(e) => this.props.changeNickName(e.target.value)}
                        defaultValue={this.props.nickname}
                 >
-
-
-                </input> • 'this.state.currentDay'
-                <input className="create_hero_text" placeholder="Text..."></input>
-                <input className="create_card_url" placeholder="Picture URL..."></input>
+                </input>
+                • {this.storeDate()}
+                <input className="create_hero_text"
+                       placeholder="Text..."
+                       onChange={(e) => this.props.changeContent(e.target.value)}
+                       defaultValue={this.props.content}
+                >
+                </input>
+                <input className="create_card_url"
+                       placeholder="Picture URL..."
+                       onChange={(e) => this.props.changeImage(e.target.value)}
+                       defaultValue={this.props.image}
+                >
+                </input>
               </div>
               <div className="create_card_header_textBox_status">
                 <span></span>
@@ -84,20 +114,26 @@ class CreatePost extends Component {
           </div>
 
           <div className="create_card_center">
+            <img src={this.storeImg()}/>
           </div>
 
           <div className="create_card_footer">
           <span>
-            <a src="#"><img src={`${path}` + "tw-message.png"} alt="Message Icon"/><span
-              className="icon2text">'this.state.countMessage}'</span></a>
+            <a src="#"><img src={`${path}` + "tw-message.png"} alt="Message Icon"/>
+            <span className="icon2text"
+                  defaultValue={this.props.message}
+                  onChange={(e) => this.props.changeMessage(e.target.value)}
+            >{this.storeMessage()}
+            </span>
+            </a>
           </span>
             <span className="create_leftTab">
             <a src="#"><img src={`${path}` + "tw-retweet.png"} alt="Retweet Icon"/><span
-              className="icon2text">'this.state.countReTweet}'</span></a>
+              className="icon2text">{this.storeReTweet()}</span></a>
           </span>
             <span className="create_leftTab">
             <a src="#"><img src={`${path}` + "tw-like.png"} alt="Like Icon"/><span
-              className="icon2text">'this.state.countLike}'</span></a>
+              className="icon2text">{this.storeLike()}</span></a>
           </span>
             <span className="create_leftTab">
             <a src="#"><img src={`${path}` + "tw-share.png"} alt="Share Icon"/></a>
@@ -116,8 +152,13 @@ class CreatePost extends Component {
 const getStateToProps = (state) => {
   console.log(state);
   return {
-      name: state.name,
-      nickname: state.nickname,
+    name: state.name,
+    nickname: state.nickname,
+    date: state.date,
+    avatar: state.avatar,
+    content: state.content,
+    image: state.image,
+    message: state.message,
   }
 }
 
@@ -125,6 +166,11 @@ const getDispatchToProps = (dispatch) => {
   return {
     changeName: e => dispatch(changeName(e)),
     changeNickName: e => dispatch(changeNickName(e)),
+    changeDate: e => dispatch(changeDate(e)),
+    changeAvatar: e => dispatch(changeAvatar(e)),
+    changeContent: e => dispatch(changeContent(e)),
+    changeImage: e => dispatch(changeImage(e)),
+    changeMessage: e => dispatch(changeMessage(e)),
   }
 }
 

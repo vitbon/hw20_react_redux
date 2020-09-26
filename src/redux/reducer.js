@@ -1,14 +1,9 @@
 import { CHANGE_NAME, CHANGE_NICKNAME, CHANGE_CONTENT, CHANGE_IMAGE,
-  CLICK_MESSAGE, CLICK_RETWEET, CLICK_LIKE, CHANGE_AVATAR, ADD_POST } from "./types";
-
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
-import {composeWithDevTools} from "redux-devtools-extension";
-import { useDispatch } from 'react-redux';
+  CLICK_MESSAGE, CLICK_RETWEET, CLICK_LIKE, CHANGE_AVATAR, CHANGE_DATE, ADD_POST } from "./types";
 
 const initialStore = [
   {
-    id: 1,
+    id: 0,
     name: "Anakin Skywalker",
     avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/skywalker-ava.jpg",
     nickname: "@anakin-batya",
@@ -20,7 +15,7 @@ const initialStore = [
     like: { count: 529, isPressed: false },
   },
   {
-    id: 2,
+    id: 1,
     name: "Emperor Palpatine",
     avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/sheevPalpatine-ava.jpg",
     nickname: "@sheva-imperator",
@@ -32,28 +27,16 @@ const initialStore = [
     like: { count: 784, isPressed: false },
   },
   {
-    id: 3,
+    id: 2,
     name: "Princess/General Leia Organa",
     avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/leiaOrgana-ava.jpg",
     nickname: "@princess-Leia",
-    date: "25 sep.",
+    date: "25 aug.",
     content: "What if you took Han Solo and gave him no depth?",
     image: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/sw9_PoeDameron-jet.jpg",
     message: { count: 296, isPressed: false },
     reTweet: { count: 138, isPressed: false },
     like: { count: 754, isPressed: false },
-  },
-  {
-    id: 4,
-    name: "",
-    avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/dartWeider-ava.jpg",
-    nickname: "",
-    date: "",
-    content: "",
-    image: "",
-    message: { count: 0, isPressed: false },
-    reTweet: { count: 0, isPressed: false },
-    like: { count: 0, isPressed: false },
   },
 ];
 
@@ -64,11 +47,65 @@ function reducer (store = initialStore, action) {
       return [...store];
     }
     case CHANGE_NICKNAME: {
-      return {
-        ...store,
-        nickname: action.payload,
-      }
+      store[store.length-1].nickname = action.payload;
+      return [...store];
     }
+    case CHANGE_DATE: {
+      store[store.length-1].date = 'test';
+      return [...store];
+    }
+    case CHANGE_CONTENT: {
+      store[store.length-1].content = action.payload;
+      return [...store];
+    }
+    case CHANGE_IMAGE: {
+      store[store.length-1].image = action.payload;
+      return [...store];
+    }
+
+    case CLICK_MESSAGE: {
+      if (store[store.length-1].message.isPressed) {
+        store[store.length-1].message.count -= 1;
+        store[store.length-1].message.isPressed = !store[store.length-1].message.isPressed;
+      } else {
+        store[store.length-1].message.count += 1;
+        store[store.length-1].message.isPressed = !store[store.length-1].message.isPressed;
+      }
+      return [...store];
+    }
+    case CLICK_RETWEET: {
+      if (store[store.length-1].reTweet.isPressed) {
+        store[store.length-1].reTweet.count -= 1;
+        store[store.length-1].reTweet.isPressed = !store[store.length-1].reTweet.isPressed;
+      } else {
+        store[store.length-1].reTweet.count += 1;
+        store[store.length-1].reTweet.isPressed = !store[store.length-1].reTweet.isPressed;
+      }
+      return [...store];
+    }
+    case CLICK_LIKE: {
+      if (store[store.length-1].like.isPressed) {
+        store[store.length-1].like.count -= 1;
+        store[store.length-1].like.isPressed = !store[store.length-1].like.isPressed;
+      } else {
+        store[store.length-1].like.count += 1;
+        store[store.length-1].like.isPressed = !store[store.length-1].like.isPressed;
+      }
+      return [...store];
+    }
+    case CHANGE_AVATAR: {
+      if (store[store.length-1].avatarID >= 3) store[store.length-1].avatarID = 0;
+        else store[store.length-1].avatarID += 1;
+      const avasURL = [
+        "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/skywalker-ava.jpg",
+        "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/sheevPalpatine-ava.jpg",
+        "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/leiaOrgana-ava.jpg",
+        "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/dartWeider-ava.jpg",
+      ];
+      store[store.length - 1].avatar = avasURL[store[store.length-1].avatarID];
+      return [...store];
+    };
+
   }
   return store;
 }
