@@ -1,4 +1,8 @@
-export const pData = [
+import React from "react";
+import store from "../../redux/store";
+import Post from "./post";
+
+const pData = [
   {
     id: 1,
     name: "Anakin Skywalker",
@@ -7,9 +11,12 @@ export const pData = [
     date: "14 mar.",
     content: "WTF? Who is Ray? Why she is Skywalker? Luke...?",
     image: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/sw9_ReySabre-laser.jpg",
-    message: { count: 482, isPressed: false },
-    reTweet: { count: 146, isPressed: false },
-    like: { count: 529, isPressed: false },
+    message: 482,
+    messageIsPressed: false,
+    reTweet: 146,
+    reTweetIsPressed: false,
+    like: 529,
+    likeIsPressed: false,
   },
   {
     id: 2,
@@ -19,9 +26,12 @@ export const pData = [
     date: "17 apr.",
     content: "That woman could turn any Ewok into a Wookie.",
     image: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/sw9_PadmeAmidala-pictol.jpg",
-    message: { count: 321, isPressed: false },
-    reTweet: { count: 97, isPressed: false },
-    like: { count: 784, isPressed: false },
+    message: 321,
+    messageIsPressed: false,
+    reTweet: 97,
+    reTweetIsPressed: false,
+    like: 784,
+    likeIsPressed: false ,
   },
   {
     id: 3,
@@ -31,8 +41,18 @@ export const pData = [
     date: "25 sep.",
     content: "What if you took Han Solo and gave him no depth?",
     image: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/sw9_PoeDameron-jet.jpg",
-    message: { count: 296, isPressed: false },
-    reTweet: { count: 138, isPressed: false },
-    like: { count: 754, isPressed: false },
+    message: 296,
+    messageIsPressed: false,
+    reTweet: 138,
+    reTweetIsPressed: false,
+    like: 754,
+    likeIsPressed: false,
   }
 ];
+
+let copyStore = store.getState();
+pData.map(p => copyStore.push(p));
+
+
+
+//export default pData;

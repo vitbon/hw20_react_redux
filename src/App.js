@@ -2,7 +2,7 @@ import React from 'react';
 import CreatePost from './component/createPost/CreatePost';
 import Post from './component/post/post';
 import './component/post/post.css';
-import {pData} from "./component/post/post_data";
+// import {pData} from "./component/post/post_data";
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
@@ -14,7 +14,7 @@ function App() {
           <CreatePost />
         </div>
         <div>
-          { pData.map(post => <Post {...post} /> )}
+          { store.getState().map((post, index) => <Post {...post} key={index} /> )}
         </div>
       </>
     </Provider>
@@ -37,3 +37,4 @@ export default App;
 При кожному натисканні необхідно збільшувати цифру на 1.
 При кожному повторному натисканні необхідно зменшувати цифру на 1.
  */
+//{/*{ pData.map(post => <Post {...post} /> )}*/}

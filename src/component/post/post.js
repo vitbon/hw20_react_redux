@@ -1,7 +1,31 @@
-import React from 'react';
+import React, {Component} from "react";
+import {connect, useDispatch} from 'react-redux';
+import reducer from '../../redux/reducer.js';
+import store from '../../redux/store';
+import { changeMessage, changeReTweet, changeLike, addPost } from "../../redux/actions";
+
+
+const getStateToProps = (state) => {
+  console.log(state);
+  return {
+    message: state.message,
+    reTweet: state.reTweet,
+    like: state.like,
+  }
+}
+
+const getDispatchToProps = (dispatch) => {
+  return {
+    // changeMessage: e => dispatch(changeMessage(e)),
+    // changeReTweet: e => dispatch(changeReTweet(e)),
+    // changeLike: e => dispatch(changeLike(e)),
+  }
+}
+
 
 const Post = (props) => {
   const path = 'https://github.com/vitbon/hw20_react_redux/raw/master/public/img/';
+  console.log(props);
   return (
     <div className={"background"}>
       <div className="card">
@@ -28,13 +52,17 @@ const Post = (props) => {
 
         <div className="card__footer">
         <span>
-          <a src="#"><img src={`${path}`+"tw-message.png"} alt="Message Icon"/><span className="icon2text">{props.message.count}</span></a>
+          <a src="#"><img src={`${path}`+"tw-message.png"} alt="Message Icon"/><span className="icon2text">{props.message}</span></a>
         </span>
         <span className="leftTab">
-          <a src="#"><img src={`${path}`+"tw-retweet.png"} alt="Retweet Icon"/><span className="icon2text">{props.reTweet.count}</span></a>
+          <a src="#"><img src={`${path}`+"tw-retweet.png"} alt="Retweet Icon"/><span className="icon2text">{props.reTweet}</span></a>
         </span>
-        <span className="leftTab">
-          <a src="#"><img src={`${path}`+"tw-like.png"} alt="Like Icon"/><span className="icon2text">{props.like.count}</span></a>
+        <span className="leftTab" onClick={(e) => this.props.changeLike(e.target)}>
+          <a src="#"><img src={`${path}`+"tw-like.png"} alt="Like Icon"/>
+          <span className="icon2text">
+            {props.like}
+          </span>
+          </a>
         </span>
         <span className="leftTab">
           <a src="#"><img src={`${path}`+"tw-share.png"} alt="Share Icon" /></a>
@@ -45,4 +73,4 @@ const Post = (props) => {
   )
 }
 
-export default Post;
+export default connect(getStateToProps, getDispatchToProps)(Post);
