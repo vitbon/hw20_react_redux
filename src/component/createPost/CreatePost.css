@@ -102,7 +102,7 @@
   opacity: 0.5;
 }
 
-. create_gray a:hover {
+.create_gray a:hover {
   opacity: 1;
   text-decoration: underline;
   user-select: none;
@@ -114,22 +114,39 @@
   left: 15px;
   width: 64px;
   height: 64px;
-  border-radius: 50%;  
+  border-radius: 50%;
   background-color: black;
   background-size: cover;
   position: absolute;
   cursor: pointer;
+  user-select: none;
 }
 
-.create_card_header_avatar::after {
-  top: 25px;
-  left: 67px;
-  color: black;
-  content: "v";
-  font-size: 15px;
+.create_card_header_avatar::before {
+  content: 'click';
+  text-align: center;
+  padding: 3px;
+  font-size: 12px;
+  top: 40px;
+  left: 9px;
+  width: 40px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #00000066;
   position: absolute;
-  cursor: pointer;
+  user-select: none;
+  z-index: 1;
 }
+
+/*.create_card_header_avatar::after {*/
+/*  top: 25px;*/
+/*  left: 67px;*/
+/*  color: black;*/
+/*  content: "v";*/
+/*  font-size: 15px;*/
+/*  position: absolute;*/
+/*  cursor: pointer;*/
+/*}*/
 
 .create_card_header_avatar img {
   width: 64px;

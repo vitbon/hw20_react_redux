@@ -46,7 +46,7 @@ const initialStore = [
     reTweetIsPressed: false,
     like: 754,
     likeIsPressed: false,
-  }
+  },
 ];
 
 function reducer (store = initialStore, action) {
@@ -82,10 +82,8 @@ function reducer (store = initialStore, action) {
       return [...store];
     }
     case ADD_POST: {
-      store.getState().push(store);
-      return [...store];
+      return [...store, {...action.payload}];
     }
-
   }
   return store;
 }

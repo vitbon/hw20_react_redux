@@ -1,15 +1,16 @@
 import React, {Component} from "react";
 import './CreatePost.css';
 import store from '../../redux/store';
-import ADD_POST from "../../redux/actions";
 import {connect, useDispatch} from 'react-redux';
+import reducer from '../../redux/reducer.js';
+import { changeMessage, changeReTweet, changeLike, addPost } from "../../redux/actions";
+
+let avatarID = 3;
 
 class CreatePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      avatarID: 3,
-      newPost: {
         id: 0,
         name: "",
         avatar: "",
@@ -23,39 +24,34 @@ class CreatePost extends Component {
         reTweetIsPressed: false,
         like: 0,
         likeIsPressed: false,
-      },
     };
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const getRnd = (min, max) => { return (Math.round(Math.random() * (max - min) + min)) };
     const d = new Date();
     const day = d.getDate();
     const month = d.getMonth();
     const strMonth = ['jan.', 'feb.', 'mar.', 'apr.', 'may', 'jun.', 'jul.', 'aug.', 'sep.', 'oct.', 'nov.', 'dec.'];
     const st = store.getState();
-    this.state.newPost.id = st.length;
-    this.state.newPost.avatar = "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/dartWeider-ava.jpg";
-    this.state.newPost.date = day + ' ' + strMonth[month];
-    this.state.newPost.message = getRnd(1, 1000);
-    this.state.newPost.reTweet = getRnd(1, 1000);
-    this.state.newPost.like = getRnd(1, 1000);
+    this.setState({id: st.length});
+    this.setState({avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/dartWeider-ava.jpg"});
+    this.setState({date: day + ' ' + strMonth[month]});
+    this.setState({message: getRnd(1, 1000)});
+    this.setState({reTweet: getRnd(1, 1000)});
+    this.setState({like: getRnd(1, 1000)});
   };
 
-  handleAvatar = (e) => {
-    if (this.state.avatarID >= 3) this.state.avatarID = 0;
-      else this.state.avatarID += 1;
+  handleAvatar = async (e) => {
+    if (avatarID >= 3) avatarID = 0;
+      else avatarID += 1;
     const avasURL = [
       "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/skywalker-ava.jpg",
       "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/sheevPalpatine-ava.jpg",
       "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/leiaOrgana-ava.jpg",
       "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/dartWeider-ava.jpg",
     ];
-    this.state.newPost.avatar = avasURL[this.state.avatarID];
-  };
-
-  handlerPublish = () => {
-    store.getState().push(this.state.newPost);
+    await this.setState({avatar: avasURL[avatarID]});
   };
 
   render() {
@@ -65,31 +61,31 @@ class CreatePost extends Component {
         <div className="create_card">
           <div className="create_card_header">
             <span className="create_card_header_avatar" onClick={this.handleAvatar}>
-              <img src={this.state.newPost.avatar} />
+              <img src={this.state.avatar} />
             </span>
             <span className="create_card_header_textBox">
               <div className="create_card_header_textBox_name">
                 <input className="create_hero_name"
                        placeholder="Full Name..."
-                       onChange={ e => this.state.newPost.name = e.target.value }
+                       onChange={ e => this.state.name = e.target.value}
                 >
                 </input>
                 <img src={`${path}` + "star-active.png"} className="star-active" alt="Active Button"/>
                 <span>&nbsp;@ </span>
                 <input className="create_hero_nick"
                        placeholder="Nickname..."
-                       onChange={e => this.state.newPost.nickname = e.target.value}
+                       onChange={e => this.state.nickname = e.target.value}
                 >
                 </input>
-                • {this.state.newPost.date}
+                • {this.state.date}
                 <input className="create_hero_text"
                        placeholder="Text..."
-                       onChange={e => this.state.newPost.content = e.target.value}
+                       onChange={e => this.state.content = e.target.value}
                 >
                 </input>
                 <input className="create_card_url"
                        placeholder="Picture URL..."
-                       onChange={e => this.state.newPost.image = e.target.value}
+                       onChange={e => this.state.image = e.target.value}
                 >
                 </input>
               </div>
@@ -100,28 +96,28 @@ class CreatePost extends Component {
           </div>
 
           <div className="create_card_center">
-            <img src={this.state.newPost.image}/>
+            <img src={this.state.image}/>
           </div>
 
           <div className="create_card_footer">
           <span>
             <a src="#"><img src={`${path}` + "tw-message.png"} alt="Message Icon"/>
               <span className="icon2text">
-                {this.state.newPost.message}
+                {this.state.message}
               </span>
             </a>
           </span>
           <span className="create_leftTab">
             <a src="#"><img src={`${path}` + "tw-retweet.png"} alt="Retweet Icon"/>
               <span className="icon2text">
-                {this.state.newPost.reTweet}
+                {this.state.reTweet}
               </span>
             </a>
           </span>
             <span className="create_leftTab">
             <a src="#"><img src={`${path}` + "tw-like.png"} alt="Like Icon"/>
               <span className="icon2text">
-                {this.state.newPost.like}
+                {this.state.like}
               </span>
             </a>
           </span>
@@ -133,7 +129,8 @@ class CreatePost extends Component {
 
         <div>
           <button className="create_publish_btn"
-                  onClick={this.handlerPublish}
+                  type="submit"
+                  onClick={() => this.props.addPost(this.state)}
           >
             Publish
           </button>
@@ -146,13 +143,13 @@ class CreatePost extends Component {
 const getStateToProps = (state) => {
   console.log(state);
   return {
-    // message: state.message,
+ //   message: state.message,
   }
 }
 
 const getDispatchToProps = (dispatch) => {
   return {
-    // addPost: e => dispatch(changeMessage(e)),
+    addPost: (arg) => dispatch(addPost(arg)),
   }
 }
 
@@ -160,7 +157,9 @@ export default connect(getStateToProps, getDispatchToProps)(CreatePost);
 
 
 
-
+// handlerPublish = () => {
+//   store.getState().push(this.state.newPost);
+// };
 
 // let avatarID = 3;
 // const newPost = {
