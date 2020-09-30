@@ -12,7 +12,7 @@ class CreatePost extends Component {
       id: 0,
       name: "",
       avatar: "",
-      nickname: "@",
+      nickname: "",
       date: "",
       content: "",
       image: "",
@@ -41,8 +41,8 @@ class CreatePost extends Component {
 
   componentWillUnmount() {
     this.storeUnsubscribe();
-    this.setState({name: 'Dart Weider'});
-    this.setState({nickname: '@'});
+    this.setState({name: this.nameDropDown[0]});
+    this.setState({nickname: ''});
     this.setState({content: ''});
     this.setState({image: ''});
   };
@@ -157,11 +157,12 @@ class CreatePost extends Component {
         <div>
             <button className="create_publish_btn"
                     type="submit"
-                    onClick={() => { this.props.addPost(this.state)
-                                     this.setState({nickname: '@'})
-                                     this.setState({name: this.nameDropDown[0]})
-                                     this.setState({image: ''})
-                                     document.getElementById("add_post").reset()
+                    onClick={async () => { await this.setState({nickname: '@'+this.state.nickname})
+                                           await this.props.addPost(this.state)
+                                           await this.setState({nickname: ''})
+                                           await this.setState({name: this.nameDropDown[0]})
+                                           await this.setState({image: ''})
+                                           document.getElementById("add_post").reset()
                     }}
             >
               Publish
