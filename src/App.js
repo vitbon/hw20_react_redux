@@ -20,14 +20,14 @@ function App() {
 
   return (
     <Provider store={store}>
-      <>
+      <div>
         <div>
           <CreatePost />
         </div>
         <div>
           { store.getState().map((post, index) => <Post {...post} key={index} /> )}
         </div>
-      </>
+      </div>
     </Provider>
   );
 }
