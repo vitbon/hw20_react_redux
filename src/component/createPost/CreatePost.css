@@ -33,15 +33,15 @@
 }
 
 .create_hero_name {
-  height: 22px;
-  width: 229px;
+  height: 28px;
+  width: 237px;
   font-size: 16px;
   font-weight: bold;
   background-color: #e2e2e2;
 }
 
 .create_hero_nick {
-  height: 22px;
+  height: 21px;
   width: 210px;
   font-size: 16px;
   background-color: #e2e2e2;

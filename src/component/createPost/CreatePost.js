@@ -5,8 +5,6 @@ import {connect, useDispatch} from 'react-redux';
 import reducer from '../../redux/reducer.js';
 import { changeMessage, changeReTweet, changeLike, addPost } from "../../redux/actions";
 
-let avatarID = 3;
-
 class CreatePost extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +25,9 @@ class CreatePost extends Component {
     };
   };
 
+  avatarID = 3;
+  nameDropDown = ['Dart Weider', 'Sky Walker', 'Sheev Palpatine', 'Leia Organa'];
+
   componentWillMount() {
     console.log('componentWillUnmount');
     this.storeUnsubscribe = store.subscribe(() => {
@@ -40,11 +41,10 @@ class CreatePost extends Component {
 
   componentWillUnmount() {
     this.storeUnsubscribe();
-    this.setState({name: ''});
+    this.setState({name: 'Dart Weider'});
     this.setState({nickname: '@'});
     this.setState({content: ''});
     this.setState({image: ''});
-    //document.getElementById("add_post").reset();
   };
 
   updateData = () => {
@@ -60,16 +60,20 @@ class CreatePost extends Component {
     };
 
   handleAvatar = async (e) => {
-    if (avatarID >= 3) avatarID = 0;
-      else avatarID += 1;
+    if (this.avatarID >= 3) this.avatarID = 0;
+      else this.avatarID += 1;
     const avasURL = [
       "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/skywalker-ava.jpg",
       "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/sheevPalpatine-ava.jpg",
       "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/leiaOrgana-ava.jpg",
       "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/dartWeider-ava.jpg",
     ];
-    await this.setState({avatar: avasURL[avatarID]});
+    await this.setState({avatar: avasURL[this.avatarID]});
   };
+
+  handleDropDown = async (e) => {
+    this.setState({name: e.target.value});
+  }
 
   render() {
     const path = 'https://github.com/vitbon/hw20_react_redux/raw/master/public/img/';
@@ -83,11 +87,14 @@ class CreatePost extends Component {
             <span className="create_card_header_textBox">
               <div className="create_card_header_textBox_name">
                 <form id="add_post">
-                  <input className="create_hero_name"
-                         placeholder="Full Name..."
-                         onChange={ e => this.state.name = e.target.value}
-                  >
-                  </input>
+                  <select className="create_hero_name"
+                          value={this.state.name}
+                          onChange={this.handleDropDown}>
+                    <option value={this.nameDropDown[0]}>Dart Weider</option>
+                    <option value={this.nameDropDown[1]}>Sky Walker</option>
+                    <option value={this.nameDropDown[2]}>Sheev Palpatine</option>
+                    <option value={this.nameDropDown[3]}>Leia Organa</option>
+                  </select>
                   <img src={`${path}` + "star-active.png"} className="star-active" alt="Active Button"/>
                   <span>&nbsp; </span>
                   <input className="create_hero_nick"
@@ -152,6 +159,7 @@ class CreatePost extends Component {
                     type="submit"
                     onClick={() => { this.props.addPost(this.state)
                                      this.setState({nickname: '@'})
+                                     this.setState({name: this.nameDropDown[0]})
                                      document.getElementById("add_post").reset()
                     }}
             >
@@ -177,3 +185,9 @@ const getDispatchToProps = (dispatch) => {
 }
 
 export default connect(getStateToProps, getDispatchToProps)(CreatePost);
+
+{/*<input className="create_hero_name"*/}
+{/*       placeholder="Full Name..."*/}
+{/*       onChange={ e => this.state.name = e.target.value}*/}
+{/*>*/}
+{/*</input>*/}
