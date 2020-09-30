@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/hw20_react_redux.git/static/css/main.33b6861a.chunk.css",
-    "main.js": "/hw20_react_redux.git/static/js/main.963c22c0.chunk.js",
-    "main.js.map": "/hw20_react_redux.git/static/js/main.963c22c0.chunk.js.map",
-    "runtime-main.js": "/hw20_react_redux.git/static/js/runtime-main.b2f5b5b5.js",
-    "runtime-main.js.map": "/hw20_react_redux.git/static/js/runtime-main.b2f5b5b5.js.map",
-    "static/js/2.19655296.chunk.js": "/hw20_react_redux.git/static/js/2.19655296.chunk.js",
-    "static/js/2.19655296.chunk.js.map": "/hw20_react_redux.git/static/js/2.19655296.chunk.js.map",
-    "index.html": "/hw20_react_redux.git/index.html",
-    "precache-manifest.9d034c8c3678bc43e9e38c1a15a03575.js": "/hw20_react_redux.git/precache-manifest.9d034c8c3678bc43e9e38c1a15a03575.js",
-    "service-worker.js": "/hw20_react_redux.git/service-worker.js",
-    "static/css/main.33b6861a.chunk.css.map": "/hw20_react_redux.git/static/css/main.33b6861a.chunk.css.map",
-    "static/js/2.19655296.chunk.js.LICENSE.txt": "/hw20_react_redux.git/static/js/2.19655296.chunk.js.LICENSE.txt"
+    "main.css": "/hw20_react_redux/static/css/main.33b6861a.chunk.css",
+    "main.js": "/hw20_react_redux/static/js/main.963c22c0.chunk.js",
+    "main.js.map": "/hw20_react_redux/static/js/main.963c22c0.chunk.js.map",
+    "runtime-main.js": "/hw20_react_redux/static/js/runtime-main.204ae851.js",
+    "runtime-main.js.map": "/hw20_react_redux/static/js/runtime-main.204ae851.js.map",
+    "static/js/2.19655296.chunk.js": "/hw20_react_redux/static/js/2.19655296.chunk.js",
+    "static/js/2.19655296.chunk.js.map": "/hw20_react_redux/static/js/2.19655296.chunk.js.map",
+    "index.html": "/hw20_react_redux/index.html",
+    "precache-manifest.605e421ddd7f9d58ce3948ed0edc915c.js": "/hw20_react_redux/precache-manifest.605e421ddd7f9d58ce3948ed0edc915c.js",
+    "service-worker.js": "/hw20_react_redux/service-worker.js",
+    "static/css/main.33b6861a.chunk.css.map": "/hw20_react_redux/static/css/main.33b6861a.chunk.css.map",
+    "static/js/2.19655296.chunk.js.LICENSE.txt": "/hw20_react_redux/static/js/2.19655296.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b2f5b5b5.js",
+    "static/js/runtime-main.204ae851.js",
     "static/js/2.19655296.chunk.js",
     "static/css/main.33b6861a.chunk.css",
     "static/js/main.963c22c0.chunk.js"
