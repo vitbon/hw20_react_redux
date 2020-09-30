@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/hw20_react_redux/static/css/main.a60229a5.chunk.css",
-    "main.js": "/hw20_react_redux/static/js/main.737ace56.chunk.js",
-    "main.js.map": "/hw20_react_redux/static/js/main.737ace56.chunk.js.map",
+    "main.js": "/hw20_react_redux/static/js/main.fd4de25c.chunk.js",
+    "main.js.map": "/hw20_react_redux/static/js/main.fd4de25c.chunk.js.map",
     "runtime-main.js": "/hw20_react_redux/static/js/runtime-main.204ae851.js",
     "runtime-main.js.map": "/hw20_react_redux/static/js/runtime-main.204ae851.js.map",
-    "static/js/2.080de13b.chunk.js": "/hw20_react_redux/static/js/2.080de13b.chunk.js",
-    "static/js/2.080de13b.chunk.js.map": "/hw20_react_redux/static/js/2.080de13b.chunk.js.map",
+    "static/js/2.81fe0cdf.chunk.js": "/hw20_react_redux/static/js/2.81fe0cdf.chunk.js",
+    "static/js/2.81fe0cdf.chunk.js.map": "/hw20_react_redux/static/js/2.81fe0cdf.chunk.js.map",
     "index.html": "/hw20_react_redux/index.html",
-    "precache-manifest.113e2e5fb74da3352d39afacefe75249.js": "/hw20_react_redux/precache-manifest.113e2e5fb74da3352d39afacefe75249.js",
+    "precache-manifest.10f4f98da3c7fd1204d5be304fdec15e.js": "/hw20_react_redux/precache-manifest.10f4f98da3c7fd1204d5be304fdec15e.js",
     "service-worker.js": "/hw20_react_redux/service-worker.js",
     "static/css/main.a60229a5.chunk.css.map": "/hw20_react_redux/static/css/main.a60229a5.chunk.css.map",
-    "static/js/2.080de13b.chunk.js.LICENSE.txt": "/hw20_react_redux/static/js/2.080de13b.chunk.js.LICENSE.txt"
+    "static/js/2.81fe0cdf.chunk.js.LICENSE.txt": "/hw20_react_redux/static/js/2.81fe0cdf.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.204ae851.js",
-    "static/js/2.080de13b.chunk.js",
+    "static/js/2.81fe0cdf.chunk.js",
     "static/css/main.a60229a5.chunk.css",
-    "static/js/main.737ace56.chunk.js"
+    "static/js/main.fd4de25c.chunk.js"
   ]
 }
