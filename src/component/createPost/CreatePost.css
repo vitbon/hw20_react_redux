@@ -34,7 +34,7 @@
 
 .create_hero_name {
   height: 22px;
-  width: 210px;
+  width: 229px;
   font-size: 16px;
   font-weight: bold;
   background-color: #e2e2e2;
@@ -80,7 +80,7 @@
   position: relative;
 }
 
-/*.create_card_center > img {*/
+/*.create_card_center img {*/
 /*  height: 112px;*/
 /*  width: 635px;*/
 /*  object-fit: cover;*/

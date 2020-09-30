@@ -18,7 +18,7 @@ const Post = (props) => {
             <div className="card__header__textBox_name">
               <span className="bold">{props.name}</span>
               <img src={`${path}`+"star-active.png"} className="star-active" alt="Active Button" />
-              <span className="gray"><a>{props.nickname}</a> • {props.date}</span>
+              <span className="gray"><a>{props.nickname}</a> &bull; {props.date}</span>
             </div>
             <div className="card__header__textBox_status">
               <span>{props.content}</span>

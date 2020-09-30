@@ -3,7 +3,7 @@ import store from "./store";
 
 const initialStore = [
   {
-    id: 1,
+    id: 3,
     name: "Anakin Skywalker",
     avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/skywalker-ava.jpg",
     nickname: "@anakin-batya",
@@ -30,10 +30,10 @@ const initialStore = [
     reTweet: 97,
     reTweetIsPressed: false,
     like: 784,
-    likeIsPressed: false ,
+    likeIsPressed: false,
   },
   {
-    id: 3,
+    id: 1,
     name: "Princess/General Leia Organa",
     avatar: "https://github.com/vitbon/hw20_react_redux/raw/master/public/img/leiaOrgana-ava.jpg",
     nickname: "@princess-Leia",
@@ -51,6 +51,47 @@ const initialStore = [
 
 function reducer (store = initialStore, action) {
   switch(action.type) {
+    case ADD_POST: {
+      console.log([...store, {...action.payload}]);
+      return [{...action.payload}, ...store];
+    }
+    // case CHANGE_MESSAGE: {
+    //   if (store[store.length-1].messageIsPressed) {
+    //     store[store.length-1].message -= 1;
+    //     store[store.length-1].messageIsPressed = !store[store.length-1].messageIsPressed;
+    //   } else {
+    //     store[store.length-1].message += 1;
+    //     store[store.length-1].messageIsPressed = !store[store.length-1].messageIsPressed;
+    //   }
+    //   return [...store];
+    // }
+    // case CHANGE_RETWEET: {
+    //   if (store[store.length-1].reTweetIsPressed) {
+    //     store[store.length-1].reTweet -= 1;
+    //     store[store.length-1].reTweetIsPressed = !store[store.length-1].reTweetIsPressed;
+    //   } else {
+    //     store[store.length-1].reTweet += 1;
+    //     store[store.length-1].reTweetIsPressed = !store[store.length-1].reTweetIsPressed;
+    //   }
+    //   return [...store];
+    // }
+    // case CHANGE_LIKE: {
+    //   if (store[store.length-1].likeIsPressed) {
+    //     store[store.length-1].like -= 1;
+    //     store[store.length-1].likeIsPressed = !store[store.length-1].likeIsPressed;
+    //   } else {
+    //     store[store.length-1].like += 1;
+    //     store[store.length-1].likeIsPressed = !store[store.length-1].likeIsPressed;
+    //   }
+    //   return [...store];
+    // }
+  }
+  return store;
+}
+
+export default reducer;
+
+/*
     case CHANGE_MESSAGE: {
       if (store[store.length-1].messageIsPressed) {
         store[store.length-1].message -= 1;
@@ -81,11 +122,4 @@ function reducer (store = initialStore, action) {
       }
       return [...store];
     }
-    case ADD_POST: {
-      return [...store, {...action.payload}];
-    }
-  }
-  return store;
-}
-
-export default reducer;
+ */

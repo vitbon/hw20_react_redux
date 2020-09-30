@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CreatePost from './component/createPost/CreatePost';
 import Post from './component/post/post';
 import './component/post/post.css';
@@ -6,7 +6,18 @@ import './component/post/post.css';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
+function useForceUpdate(){
+  const [value, setValue] = useState(0); // integer state
+  return () => setValue(value => ++value); // update the state to force render
+}
+
 function App() {
+  const forceUpdate = useForceUpdate();
+
+  store.subscribe(() => {
+    forceUpdate();
+  });
+
   return (
     <Provider store={store}>
       <>
