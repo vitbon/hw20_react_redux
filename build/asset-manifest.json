@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/hw20_react_redux/static/css/main.a60229a5.chunk.css",
-    "main.js": "/hw20_react_redux/static/js/main.154bdf9a.chunk.js",
-    "main.js.map": "/hw20_react_redux/static/js/main.154bdf9a.chunk.js.map",
+    "main.js": "/hw20_react_redux/static/js/main.737ace56.chunk.js",
+    "main.js.map": "/hw20_react_redux/static/js/main.737ace56.chunk.js.map",
     "runtime-main.js": "/hw20_react_redux/static/js/runtime-main.204ae851.js",
     "runtime-main.js.map": "/hw20_react_redux/static/js/runtime-main.204ae851.js.map",
     "static/js/2.080de13b.chunk.js": "/hw20_react_redux/static/js/2.080de13b.chunk.js",
     "static/js/2.080de13b.chunk.js.map": "/hw20_react_redux/static/js/2.080de13b.chunk.js.map",
     "index.html": "/hw20_react_redux/index.html",
-    "precache-manifest.ce1b8eb5458ebb312a9713c778c3420e.js": "/hw20_react_redux/precache-manifest.ce1b8eb5458ebb312a9713c778c3420e.js",
+    "precache-manifest.113e2e5fb74da3352d39afacefe75249.js": "/hw20_react_redux/precache-manifest.113e2e5fb74da3352d39afacefe75249.js",
     "service-worker.js": "/hw20_react_redux/service-worker.js",
     "static/css/main.a60229a5.chunk.css.map": "/hw20_react_redux/static/css/main.a60229a5.chunk.css.map",
     "static/js/2.080de13b.chunk.js.LICENSE.txt": "/hw20_react_redux/static/js/2.080de13b.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.204ae851.js",
     "static/js/2.080de13b.chunk.js",
     "static/css/main.a60229a5.chunk.css",
-    "static/js/main.154bdf9a.chunk.js"
+    "static/js/main.737ace56.chunk.js"
   ]
 }

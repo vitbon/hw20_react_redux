@@ -160,6 +160,7 @@ class CreatePost extends Component {
                     onClick={() => { this.props.addPost(this.state)
                                      this.setState({nickname: '@'})
                                      this.setState({name: this.nameDropDown[0]})
+                                     this.setState({image: ''})
                                      document.getElementById("add_post").reset()
                     }}
             >
